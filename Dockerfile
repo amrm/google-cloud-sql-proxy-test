@@ -21,7 +21,7 @@ CMD ["java", "-jar", "/test.jar"]
 
 # docker login
 # http://docs.heptio.com/content/private-registries/pr-docker-hub.html
-# kubectl create secret docker-registry abdeldayem   --docker-username=abdeldayem   --docker-password=amr02744   --docker-email=eng.amr.abdeldayem@gmail.com
+# kubectl create secret docker-registry abdeldayem   --docker-username=abdeldayem   --docker-password=$password   --docker-email=eng.amr.abdeldayem@gmail.com
 # kubectl patch serviceaccount default   -p "{\"imagePullSecrets\": [{\"name\": \"abdeldayem\"}]}"
 
 # kubectl create deployment google-cloud-test --image=abdeldayem/google-cloud-test:0.0.5.Release
