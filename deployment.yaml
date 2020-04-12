@@ -1,0 +1,94 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: google-cloud-test
+  name: google-cloud-test
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: google-cloud-test
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: google-cloud-test
+    spec:
+      containers:
+      - image: abdeldayem/google-cloud-test:0.0.5.Release
+        imagePullPolicy: Always
+        name: google-cloud-test
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: cloudsql-proxy
+  name: cloudsql-proxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cloudsql-proxy
+    spec:
+      containers:
+      - image: gcr.io/cloudsql-docker/gce-proxy:1.16
+        name: cloudsql-proxy
+        env:
+          - name: CLOUDSQL_DB_HOST
+            value: 127.0.0.1:3306
+        command: ["/cloud_sql_proxy", "--dir=/cloudsql",
+            "-instances=striped-buckeye-272717:us-central1:report=tcp:0.0.0.0:3306",
+            "-credential_file=/secrets/cloudsql/credentials.json"]
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+          - name: cloudsql
+            mountPath: /cloudsql
+      volumes:
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql-instance-credentials
+      - name: cloudsql
+        emptyDir:
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: google-cloud-test
+  name: google-cloud-test
+  namespace: default
+spec:
+  ports:
+  - nodePort: 30941
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: google-cloud-test
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clouddb
+spec:
+  ports:
+    - port: 3306
+      name: cloudsql
+  selector:
+    app: cloudsql-proxy
