@@ -33,7 +33,6 @@ CMD ["java", "-jar", "/test.jar"]
 # CREATE DATABASE google-cloud-test CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 # kubectl logs pod
-# https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory
 
 # connect sql google cloud to kubectl by proxy
 # https://www.youtube.com/watch?v=bN000CEg7IM
