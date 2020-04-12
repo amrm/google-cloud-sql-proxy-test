@@ -29,5 +29,5 @@ build/
 
 ### VS Code ###
 .vscode/
-
+.deploy
 striped-buckeye-272717-2551ce8b0cc2.json
