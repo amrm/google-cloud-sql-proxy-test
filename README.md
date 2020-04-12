@@ -33,5 +33,5 @@
     
     $ kubectl logs pod
     
-# to set spring.datasource.url
-    $ spring.datasource.url=jdbc:mysql://clouddb/report?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=yes&characterEncoding=UTF-8
+# to set spring.datasource.url in application.properties
+    spring.datasource.url=jdbc:mysql://clouddb/report?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=yes&characterEncoding=UTF-8
