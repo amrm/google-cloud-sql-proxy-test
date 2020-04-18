@@ -31,7 +31,7 @@ public class WebController {
 
     @RequestMapping("/")
     public String index() {
-        return "Greetings from Spring Boot!  spring.datasource.url=jdbc:mysql://localhost/report?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=yes&characterEncoding=UTF-8\n";
+        return "Greetings from Spring Boot!  jdbc:mysql://clouddb/report?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=yes&characterEncoding=UTF-8";
     }
 
     @GetMapping("/users")
