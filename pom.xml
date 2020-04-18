@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>spring.cloud.google.cloud.com</groupId>
 	<artifactId>google-cloud-test</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.5</version>
 	<name>test</name>
 	<packaging>jar</packaging>
 	<description>test create project deploy on google cloud </description>

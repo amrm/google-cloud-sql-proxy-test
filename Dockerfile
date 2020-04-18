@@ -17,8 +17,8 @@ COPY --from=MAVEN_BUILD /target/google-cloud-test.jar /test.jar
 # set the startup command to execute the jar
 CMD ["java", "-jar", "/test.jar"]
 
-# docker build -t abdeldayem/google-cloud-test:0.0.7.Release .
-# docker push abdeldayem/google-cloud-test:0.0.7.Release
+# docker build -t abdeldayem/google-cloud-test:0.0.5.Release .
+# docker push abdeldayem/google-cloud-test:0.0.5.Release
 
 # docker login
 # http://docs.heptio.com/content/private-registries/pr-docker-hub.html

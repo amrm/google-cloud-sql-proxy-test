@@ -7,8 +7,8 @@
     $ kubectl patch serviceaccount default   -p "{\"imagePullSecrets\": [{\"name\": \"abdeldayem\"}]}"
 
 # to build docker image and push it on docker repo
-    $ docker build -t abdeldayem/google-cloud-test:0.0.7.Release .
-    $ docker push abdeldayem/google-cloud-test:0.0.7.Release
+    $ docker build -t abdeldayem/google-cloud-test:0.0.5.Release .
+    $ docker push abdeldayem/google-cloud-test:0.0.5.Release
     
 # to connect sql google cloud to kubectl by proxy
 # https://www.youtube.com/watch?v=bN000CEg7IM
